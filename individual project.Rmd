@@ -1,0 +1,35 @@
+---
+title: "individual project"
+author: "Sonam Lake"
+date: '2022-04-18'
+output: html_document
+---
+#1 scrape the navigation links from the left hand side of the book website
+install.packages("rvest")
+install.packages("dplyr")
+
+library(rvest)
+library(dplyr)
+
+link="https://bookdown.org/yihui/bookdown/"
+page = read_html(link)
+nav <- html_nodes(page, "nav")
+links <- html_nodes(nav, "a")
+urls <- html_attr(links, "href")
+urls[1]<- ""
+urls <- paste0(link, urls)
+head(urls)
+
+#2 scrape the content from a single page on that site
+getContent <- function(url){
+  page = read_html(url)
+  div = html_node(page, "div.page-inner")
+  content <- html_text(div)
+  content
+}
+getContent(urls[1])
+
+#3 scrape the content from all the pages
+
+str(page)
+
