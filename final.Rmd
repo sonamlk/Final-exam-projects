@@ -1,0 +1,19 @@
+---
+title: "final exam"
+output: html_document
+date: '2022-04-18'
+---
+
+library(rvest)
+library(dplyr)
+library(xml2)
+gasprice<-"https://www.barrons.com/articles/barrons-top-10-stock-picks-for-2019-51544837018"
+page<-read_html(stock)
+page
+
+body_nodes<-html_children(html_node(page,"body"))
+body_nodes<-page %>%
+  html_node("body")%>%
+  html_children()
+body_nodes
+
